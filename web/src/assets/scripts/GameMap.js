@@ -80,15 +80,17 @@ export class GameMap extends AcGameObject {
         this.ctx.canvas.focus();
         const [snake0,snake1] = this.snakes;
         this.ctx.canvas.addEventListener("keydown",e => {
-            
-            if(e.key === 'w') snake0.set_direction(0);
-            else if(e.key === 'd') snake0.set_direction(1);
-            else if(e.key === 's') snake0.set_direction(2);
-            else if(e.key === 'a') snake0.set_direction(3);
-            else if(e.key === "ArrowUp") snake1.set_direction(0);
-            else if(e.key === "ArrowRight") snake1.set_direction(1);
-            else if(e.key === "ArrowDown") snake1.set_direction(2);
-            else if(e.key === "ArrowLeft") snake1.set_direction(3);
+            if(snake0.status != "die" && snake1.status != "die")
+            {
+                if(e.key === 'w') snake0.set_direction(0);
+                else if(e.key === 'd') snake0.set_direction(1);
+                else if(e.key === 's') snake0.set_direction(2);
+                else if(e.key === 'a') snake0.set_direction(3);
+                else if(e.key === "ArrowUp") snake1.set_direction(0);
+                else if(e.key === "ArrowRight") snake1.set_direction(1);
+                else if(e.key === "ArrowDown") snake1.set_direction(2);
+                else if(e.key === "ArrowLeft") snake1.set_direction(3);
+            }
         });
     }
 
@@ -149,7 +151,6 @@ export class GameMap extends AcGameObject {
         this.update_size();
         
         if(this.check_ready()) {
-            console.log(1)
             this.next_step();    
         }
         this.render();
