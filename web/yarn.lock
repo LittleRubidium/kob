@@ -1806,6 +1806,11 @@ accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.8:
     mime-types "~2.1.34"
     negotiator "0.6.3"
 
+ace-builds@^1.4.13:
+  version "1.12.5"
+  resolved "https://registry.npmmirror.com/ace-builds/-/ace-builds-1.12.5.tgz#e037069148507b4b32c21f56b52a830e9a0759d3"
+  integrity sha512-2OTOZZdXVqWHfsV63n/bWLJ4uGnGNm9uwEQSECbEzMpKF2RKxD04lWu7s+eRBTZoEbqPXziyI1qamJH2OAwdwA==
+
 acorn-import-assertions@^1.7.6:
   version "1.8.0"
   resolved "https://registry.npmmirror.com/acorn-import-assertions/-/acorn-import-assertions-1.8.0.tgz#ba2b5939ce62c238db6d93d81c9b111b29b855e9"
@@ -5074,6 +5079,11 @@ requires-port@^1.0.0:
   resolved "https://registry.npmmirror.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==
 
+resize-observer-polyfill@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.npmmirror.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
+  integrity sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==
+
 resolve-from@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmmirror.com/resolve-from/-/resolve-from-4.0.0.tgz#4abcd852ad32dd7baabfe9b40e00a36db5f392e6"
@@ -5829,7 +5839,16 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.npmmirror.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@^3.2.13:
+vue3-ace-editor@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.npmmirror.com/vue3-ace-editor/-/vue3-ace-editor-2.2.2.tgz#7fd694df2f556e8859edd2322703e039461c9ecc"
+  integrity sha512-fZ6OWosbU+odLrtrcGC/536QjCigujYJB0Hf6/tBp+ef/ohTadwQAqyBlVzOmvrmzZyubphpV9zkaZcx5Fuivw==
+  dependencies:
+    ace-builds "^1.4.13"
+    resize-observer-polyfill "^1.5.1"
+    vue "^3.2.26"
+
+vue@^3.2.13, vue@^3.2.26:
   version "3.2.41"
   resolved "https://registry.npmmirror.com/vue/-/vue-3.2.41.tgz#ed452b8a0f7f2b962f055c8955139c28b1c06806"
   integrity sha512-uuuvnrDXEeZ9VUPljgHkqB5IaVO8SxhPpqF2eWOukVrBnRBx2THPSGQBnVRt0GrIG1gvCmFXMGbd7FqcT1ixNQ==
