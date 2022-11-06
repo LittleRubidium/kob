@@ -1,4 +1,4 @@
-package com.kob.matchingsystem.service.impl.utils;
+package com.kob.botruningsystem.service.impl.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Player {
+public class Bot {
     private Integer userId;
-    private Integer rating;
-    private Integer BotId;
-    private Integer waitingTime;
+    private String botCode;
+    private String input;
 }
