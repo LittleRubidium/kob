@@ -93,7 +93,7 @@ public class MatchingPool extends Thread {
     public void run() {
         while(true) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(200);
                 lock.lock();
                 try {
                     matchPlayers();

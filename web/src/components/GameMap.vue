@@ -17,6 +17,10 @@ export default {
         const store = useStore();
         onMounted(() => {
             store.commit("updateGameObject",new GameMap(canvas.value.getContext('2d'),parent.value,store));
+            // store.state.pk.socket.send(JSON.stringify({
+            //         event: "start",
+            //         user_id: store.state.user.id,
+            // }));
         });
 
         return {

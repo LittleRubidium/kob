@@ -101,6 +101,23 @@ public class WebSocketServer {
             stopMatching();
         }else if("move".equals(event)) {
             move(data.getInteger("direction"));
+        }else if("done".equals(event)) {
+            System.out.println("done: " + data.getInteger("user_id"));
+            if(game.getPlayerA().getId().equals(data.getInteger("user_id"))) {
+                game.lock.lock();
+                try {
+                    game.isDoneA = true;
+                }finally {
+                    game.lock.unlock();
+                }
+            }else if(game.getPlayerB().getId().equals(data.getInteger("user_id"))) {
+                game.lock.lock();
+                try{
+                    game.isDoneB = true;
+                }finally {
+                    game.lock.unlock();
+                }
+            }
         }
     }
 
@@ -114,7 +131,7 @@ public class WebSocketServer {
             users.get(a.getId()).game = game;
         if(users.get(b.getId()) != null)
             users.get(b.getId()).game = game;
-        game.start();
+
 
         JSONObject respGame = new JSONObject();
         respGame.put("a_id",game.getPlayerA().getId());
@@ -140,6 +157,12 @@ public class WebSocketServer {
         respB.put("game",respGame);
         if(users.get(b.getId()) != null)
             users.get(b.getId()).sendMessage(respB.toJSONString());
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        game.start();
     }
 
     private void startMatching(Integer botId) {

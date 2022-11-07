@@ -81,6 +81,10 @@ export class Snake extends AcGameObject {
             if (!this.check_tail_increase()) { //蛇不会变长
                 this.cells.pop();
             }
+            this.gamemap.store.state.pk.socket.send(JSON.stringify({
+                event: "done",
+                user_id: this.gamemap.store.state.user.id,
+            }));
         } else {
             const move_dirtance = this.speed * this.timedelta / 1000; //每两帧走的距离
             this.cells[0].x += move_dirtance * dx / dis;

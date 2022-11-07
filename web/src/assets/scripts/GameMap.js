@@ -38,7 +38,6 @@ export class GameMap extends AcGameObject {
     }
 
     add_listening_events() {
-
         this.ctx.canvas.focus();
         this.ctx.canvas.addEventListener("keydown", e => {
             let d = -1;
@@ -81,7 +80,6 @@ export class GameMap extends AcGameObject {
     }
 
     next_step() {
-
         for (const snake of this.snakes) {
             snake.next_step();
         }
@@ -109,10 +107,9 @@ export class GameMap extends AcGameObject {
 
     update() {
         this.update_size();
-        // this.create_walls();
-        // this.add_listening_events();
         if (this.check_ready()) {
             this.next_step();
+            
         }
         this.render();
     }

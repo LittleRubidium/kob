@@ -2,7 +2,6 @@ package com.kob.backend.consumer.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.kob.backend.consumer.WebSocketServer;
-import com.kob.backend.mapper.RecordMapper;
 import com.kob.backend.pojo.Bot;
 import com.kob.backend.pojo.Record;
 import org.springframework.util.LinkedMultiValueMap;
@@ -18,6 +17,7 @@ public class Game extends Thread{
     private Integer rows;
     private Integer cols;
     private Integer inner_walls_count;
+    public boolean isDoneA = true,isDoneB = true;
     int [][]g;
 
     private final static int[] dx = {-1,0,1,0},dy = {0,1,0,-1};
@@ -26,7 +26,7 @@ public class Game extends Thread{
 
     private Integer nextStepA = null;
     private Integer nextStepB = null;
-    private ReentrantLock lock = new ReentrantLock();
+    public ReentrantLock lock = new ReentrantLock();
     private String status = "playing";
     private String loser = "";
     private final static String addBotUrl = "http://127.0.0.1:3002/bot/add/";
@@ -167,20 +167,22 @@ public class Game extends Thread{
 
     private boolean nextStep() { //等待两名玩家的下一步操作
         try {
-            Thread.sleep(200);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         sendBotCode(playerA);
         sendBotCode(playerB);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 50; i++) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(100);
                 lock.lock();
                 try {
                     if (nextStepA != null && nextStepB != null) {
                         playerA.getSteps().add(nextStepA);
                         playerB.getSteps().add(nextStepB);
+                        isDoneA = isDoneB = false;
+                        System.out.println(isDoneA + " " + isDoneB);
                         return true;
                     }
                 } finally {
@@ -241,9 +243,13 @@ public class Game extends Thread{
         int n = cellsA.size();
         Cell cell = cellsA.get(n - 1);
         if(g[cell.x][cell.y] == 1) return false;
-
         for (int i = 0; i < n - 1; i++) {
             if(cellsA.get(i).x == cell.x && cellsA.get(i).y == cell.y) {
+                return false;
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if(cellsB.get(i).x == cell.x && cellsB.get(i).y == cell.y) {
                 return false;
             }
         }
@@ -288,7 +294,8 @@ public class Game extends Thread{
 
     @Override
     public void run() {
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0;; i++) {
+            if(!isDoneA || !isDoneB) continue;
             if(nextStep()) { //是否获取了两条蛇的下一步操作
                 judge();
                 if(status.equals("playing")) {
