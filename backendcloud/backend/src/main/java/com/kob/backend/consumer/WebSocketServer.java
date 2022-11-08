@@ -31,7 +31,7 @@ public class WebSocketServer {
     final public static ConcurrentHashMap<Integer, WebSocketServer> users = new ConcurrentHashMap<>();
     public static RestTemplate restTemplate;
 
-    private static UserMapper userMapper;
+    public static UserMapper userMapper;
     public static RecordMapper recordMapper;
     private static BotMapper botMapper;
 
@@ -102,7 +102,6 @@ public class WebSocketServer {
         }else if("move".equals(event)) {
             move(data.getInteger("direction"));
         }else if("done".equals(event)) {
-            System.out.println("done: " + data.getInteger("user_id"));
             if(game.getPlayerA().getId().equals(data.getInteger("user_id"))) {
                 game.lock.lock();
                 try {
