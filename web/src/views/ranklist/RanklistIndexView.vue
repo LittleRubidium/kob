@@ -61,7 +61,7 @@ export default {
         }
 
         const update_pages = () => {
-            let max_pages = parseInt(Math.ceil(total_users / 3));
+            let max_pages = parseInt(Math.ceil(total_users / 10));
             maxPage = max_pages;
             let new_pages = [];
             for(let i = current_page - 2;i <= current_page + 2;i++) {
@@ -78,7 +78,7 @@ export default {
         const pull_page = page => {
             current_page = page;
             $.ajax({
-                url: "http://127.0.0.1:3000/ranklist/getlist/",
+                url: "http://127.0.0.1:3000/api/ranklist/getlist/",
                 data: {
                     page,
                 },

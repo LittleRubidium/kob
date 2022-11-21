@@ -183,7 +183,6 @@ public class Game extends Thread{
                         playerA.getSteps().add(nextStepA);
                         playerB.getSteps().add(nextStepB);
                         isDoneA = isDoneB = false;
-                        System.out.println(isDoneA + " " + isDoneB);
                         return true;
                     }
                 } finally {
